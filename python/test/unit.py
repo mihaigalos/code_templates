@@ -9,5 +9,5 @@ class PathTest(unittest.TestCase):
         self.assertTrue(os.path.isfile("test/input_data.txt") == True)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()
