@@ -1,0 +1,35 @@
+load("@bazel_tools//tools/build_defs/repo:git.bzl", "git_repository")
+
+git_repository(
+    name = "rules_python",
+    # Replace this with a Git commit SHA.
+    commit = "4b84ad270387a7c439ebdccfd530e2339601ef27",
+    remote = "https://github.com/bazelbuild/rules_python.git",
+)
+
+# This call should always be present.
+load("@rules_python//python:repositories.bzl", "py_repositories")
+
+py_repositories()
+
+# This one is only needed if you're using the packaging rules.
+load("@rules_python//python:pip.bzl", "pip_repositories")
+
+pip_repositories()
+
+#------------------------- Requirements -------------------------
+
+load("@rules_python//python:pip.bzl", "pip_import")
+
+# This rule translates the specified requirements.txt into
+# @my_deps//:requirements.bzl, which itself exposes a pip_install method.
+pip_import(
+    name = "my_deps",
+    requirements = "//:requirements.txt",
+)
+
+# Load the pip_install symbol for my_deps, and create the dependencies'
+# repositories.
+load("@my_deps//:requirements.bzl", "pip_install")
+
+pip_install()
