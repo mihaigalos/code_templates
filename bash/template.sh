@@ -15,6 +15,14 @@ EOT
     exit 0
 }
 
+function err() {
+    echo -e "\e[1;31m${@}\e[0m" >&2
+}
+
+export -f err
+
+# err "This is an error."
+
 if [ "$#" -ne 1 ]; then
    usage; 
 fi
