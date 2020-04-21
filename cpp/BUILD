@@ -14,7 +14,10 @@ cc_test(
         "test/**/*.cpp",
         "test/**/*.h",
     ]),
-    copts = ["-std=c++17"],
+    copts = [
+        "-fdiagnostics-color",
+        "-std=c++17",
+    ],
     tags = ["unit"],
     deps = [
         ":sut",
