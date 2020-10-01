@@ -1,0 +1,26 @@
+# based on: https://youtu.be/F7hoq0KwHD4
+# based on: https://bit.ly/34dyru5
+
+version: '3'
+
+services:
+    web:
+        image: instavote/vote
+        ports:
+          - 81:80
+        networks:
+          - mynet
+        deploy:
+          replicas: 4
+
+    visualizer:
+        image: dockersamples/visualizer:stable
+        ports:
+          - "8081:8080"
+        volumes:
+          - "/var/run/docker.sock:/var/run/docker.sock"
+        deploy:
+          placement:
+            constraints: [node.role == manager]
+networks:
+    mynet:
