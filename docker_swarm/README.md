@@ -19,8 +19,8 @@ docker stack ps nodeapp
 
 ```bash
 docker service ls
-docker service ps nodeapp_web
-docker service logs --tail 1 nodeapp_web
+docker service ps nodeapp
+docker service logs --tail 1 nodeapp
 ```
 
 ### Node level
