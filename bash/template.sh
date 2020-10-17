@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -euxo pipefail
+set -eux pipefail
 
 # Use outside of script: export INJECTED_VARIABLE="foo"; ./template.sh
 declare injected_variable="${INJECTED_VARIABLE:-}"
