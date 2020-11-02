@@ -13,10 +13,16 @@ EOT
     exit 1
 }
 
+function err() {
+    echo -e "\e[1;31m${@}\e[0m" >&2
+}
+
+export -f err
+
 
 
 if [ "$#" -ne 2 ]; then
-   echo "$#"
+   err Incorrect number of arguments.
    usage; 
 fi
 
