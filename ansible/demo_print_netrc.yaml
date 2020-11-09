@@ -1,4 +1,9 @@
 # yamllint disable rule:line-length
+
+# uncomment these lines for running locally:
+#- hosts: localhost
+#  connection: local
+
 - hosts: all
   vars:
     secrets:
