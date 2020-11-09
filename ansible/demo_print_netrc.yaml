@@ -1,0 +1,20 @@
+# yamllint disable rule:line-length
+- hosts: all
+  vars:
+    secrets:
+      own_app:
+        user: abc
+        token: dfg
+        secret_type: token
+      artifactory:
+        user: ppd
+        password: utf
+        secret_type: password
+    machine_name_secret_dict:
+      my_domain.com: own_app
+      my_artifactory: artifactory
+  tasks:
+    - name: Print dictionary
+      debug:
+        msg: "machine {{ item.key }} login {{ secrets[item.value].user }} password {{ secrets[item.value][secrets[item.value].secret_type] }}"
+      loop: "{{ lookup('dict', machine_name_secret_dict ) }}"
