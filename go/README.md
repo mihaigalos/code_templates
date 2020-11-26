@@ -1,5 +1,7 @@
 ### Golang
 
+No need to write any `bazel` BUILD files anywhere, will be generated from `gazelle` based on the folder structure.
+
 ```bash
 $ bazel run //:gazelle # once, generates BUILD.bazel recursively on all levels.
 
