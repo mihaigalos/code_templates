@@ -1,0 +1,10 @@
+load("@rules_rust//rust:rust.bzl", "rust_binary")
+
+rust_binary(
+    name = "hello_world_binary",
+    srcs = ["src/main.rs"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//hello_world/cargo:clap",
+    ],
+)
