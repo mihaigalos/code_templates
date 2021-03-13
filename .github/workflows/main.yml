@@ -1,0 +1,30 @@
+name: CI
+
+on:
+  schedule:
+    - cron:  '0 3 */3 * *'
+  push:
+    branches:
+      - master
+
+    tags:
+      - v*
+
+  pull_request:
+
+jobs:
+  build_and_test:
+    runs-on: ubuntu-20.04
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Build and Test
+        run: |
+          for d in */ ; do
+            echo "Attempting to build $d using bazel..."
+            pushd $d
+              [ -f WORKSPACE ] && bazel test //...
+            popd
+            echo "------------------------------------------------------------------------------"
+          done
